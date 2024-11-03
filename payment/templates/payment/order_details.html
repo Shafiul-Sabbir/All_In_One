@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<br/>
+<div class ="container">
+    <div class="row">
+        <center>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                      Order ID : {{order.id}} - $ {{order.amount_paid}}
+                    </div>
+                    <div class="card-body">
+                        <i><strong>Full Name : </strong>{{order.full_name}} <br></i>
+                        <i><strong>Email : </strong>{{order.email}} <br></i>
+                        {% if order.date_shipped %}
+                            <i><strong>Date Shipped :  </strong>{{ order.date_shipped }} </i><br>
+                        {% else %}
+                            <i><strong>Date Ordered : </strong> {{ order.date_ordered }} </i><br>
+                        {% endif %}
+                        <i><strong>Shipping Address : </strong><pre>{{ address }}</pre> </i>
+                    
+                        
+                        <table class="table table-hover table-striped table-bordered ">
+                            <thead class="table-dark">
+                              <tr>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Subtotal</th>
+                              </tr>
+                            </thead>
+        
+                            <tbody>
+                                {% for item, subtotal in order_items_with_subtotals %}
+                                <tr>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    {% if item.product.is_sale %}
+                                    <!--Sale-->
+                                        <td> $ {{item.product.sale_price}}</td> <br/>
+                                    {% else %}  
+                                    <!-- Product price-->
+                                        <td> $ {{item.product.price}}</td><br/>
+                                    {% endif %}
+                                    <td>{{subtotal}}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                        <br/>
+
+                        {% if not order.shipped %}
+                            <form method="POST" >
+                                {% csrf_token %}
+                                <input type="hidden" name="shipping_status" value="true">
+                                <button type="submit" class ="btn btn-success" > Mark As "Shipped" </button>
+                            </form>
+                        {% else %}
+                        <form method="POST" >
+                            {% csrf_token %}
+                            <input type="hidden" name="shipping_status" value="false">
+                            <button type="submit" class ="btn btn-danger" > Mark As "Un-shipped" </button>
+                        </form>
+                        {% endif %}
+                    </div> 
+                </div>
+            </div>
+        </center>    
+    </div>
+</div>  
+<br>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class ="container">
+    <br/>
+    <div class="card mb-3" >
+        <div class="row g-0">
+          <!-- image part -->
+          <div class="col-md-4">
+            <img src="{{product.image.url}}" class="img-fluid rounded-start m-3" style="height: 250px; width: 250px; border:1px solid black; border-radius:10px" alt="...">
+          </div>
+
+          <!-- description part -->
+          <div class="col-md-8">
+            <div class="card-body">
+                <center>
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text justified">{{product.description}}</p>
+
+                    {% if product.is_sale %}
+                        <!--Sale-->
+                        <div>
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                &nbsp;&nbsp;<b>Sale!</b>&nbsp;&nbsp;
+                                <div class="bi-star-fill"></div>
+                            </div>
+                            <!-- Product price-->
+                            <span class="text-muted text-decoration-line-through">${{product.price}}</span>
+                            - ${{product.sale_price}}
+                            <br/>
+                        </div>
+                    {% else %}
+                        <!-- Product price-->
+                        ${{product.price}}
+                    {% endif %}
+                    <br/>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-2">Quantity : </div>
+
+                        <div class="col-md-2">
+                          <select class="form-select form-select-sm" id="qty-cart" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <a href="{% url 'home' %}" class ="btn btn-secondary">Back to Home</a>
+
+                    <button type="button" value="{{product.id}}" class="btn btn-primary" id="add-cart">Add to Cart</button>
+
+                </center>
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+  //check if button pressed
+  $(document).on('click', '#add-cart', function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url: "{% url 'cart_add' %}",
+      data: {
+        product_id: $('#add-cart').val(),
+        product_qty:$('#qty-cart option:selected').text(),
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        action: 'post'
+      },
+
+      success: function(json){
+        document.getElementById('cart_quantity').textContent = json.qty
+        location.reload()
+      },
+
+      error: function(xhr, errmsg, err){
+      }
+
+    });
+
+  })
+
+</script>
+{% endblock %}

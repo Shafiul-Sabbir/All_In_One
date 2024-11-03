@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shipped Dash board</h1>
+            <p class="lead fw-normal text-white-50 mb-0">View your Shipped dash board.</p>
+        </div>
+    </div>
+</header>
+<br/>
+<div class ="container">
+    <div class="row">
+        <center>
+            <div class="col-8">
+                <br/><br/>
+                <h3>Shipped Items</h3>
+                <br/>
+                <table class="table table-hover table-striped table-bordered  ">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Customer Email</th>
+                        <!-- <th scope="col">Customer Address</th> -->
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Date Shipped</th>
+                        <th scope="col">Shipping Status</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in orders  %}
+                      <tr>
+                        <td><a href="{% url 'order_details' item.id %}">{{ item.id }}</a></td>
+                        <td>{{ item.full_name }}</td>
+                        <td>{{ item.email }}</td>
+                        <!-- <td>{{ item.shipping_address }}</td> -->
+                        <td>{{ item.amount_paid }}</td>
+                        <td>{{ item.date_shipped }}</td>
+                        <td>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="shipping_status" value="false">
+                                <input type="hidden" name="num" value={{ item.id }}>
+                                <button type="submit" class="btn btn-danger btn-sm">Mark as Un-Shipped</button>
+                            </form>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+                <br/><br/>
+                
+                <br/><br/>
+            </div>
+        </center>
+    </div>
+</div>
+{% endblock %}
