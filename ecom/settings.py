@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-
+# DATABASES configuration
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),  # Ensure this environment variable is set in Railway
-        conn_max_age=600,
-        ssl_require=True
+        default=f"postgres://postgres:{os.getenv('DB_PASSWORD_YO')}@postgres.railway.internal:5432/railway",
+        conn_max_age=1800,
+        ssl_require=True  # Set to True for Railway or secure connections
     )
 }
 
