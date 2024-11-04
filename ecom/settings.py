@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw
 DEBUG = True
 
 ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [ 'https://allinone-production.up.railway.app']
 
 
 # Application definition
