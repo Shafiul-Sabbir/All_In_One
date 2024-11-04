@@ -85,10 +85,13 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),  # Ensure this environment variable is set in Railway
-        conn_max_age=1800
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Explicitly define the engine
+        **dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),  # Use environment variable for database URL
+            conn_max_age=1800
+        )
+    }
 }
 
 # Password validation
