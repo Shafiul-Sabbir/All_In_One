@@ -171,3 +171,8 @@ def search(request):
             return render(request, 'search.html', {'searched': searched, 'products': products})
         return render(request, 'search.html', {'searched': searched, 'products': products})
         
+# superuser
+# username : sabbir
+# pass : sab1995
+# username : admin
+# pass : 123456

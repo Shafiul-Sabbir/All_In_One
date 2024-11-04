@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATABASE_URL = "postgresql://postgres:qmjrvdurPDAJEktOKKunvGyasmXgwyqo@autorack.proxy.rlwy.net:10771/railway"
+# DATABASE_URL = "postgresql://postgres:vLCtWbKTAWPFolnfsIRZMzPOEiqhkuxC@autorack.proxy.rlwy.net:13506/railway"
 
 #Load our environmental variables
 load_dotenv()
@@ -32,6 +32,7 @@ SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = []
 
 
 # Application definition
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'store',
     'cart',
     'payment',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ecom.urls'
@@ -84,26 +87,26 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         # 'ENGINE': 'django.db.backends.sqlite3',
-#         # 'NAME': BASE_DIR / 'db.sqlite3',
-        
-#         # 'ENGINE': 'django.db.backends.postgresql',
-#         # 'NAME': 'railway',
-#         # 'USER': 'postgres',
-#         # 'PASSWORD': os.environ.get('DB_PASSWORD_YO'),
-#         # 'HOST': 'postgres.railway.internal',
-#         # 'PORT': '5432',
-        
-#     }
-# }
-
-
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
+    'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('DB_PASSWORD_YO'),
+        'HOST': 'postgres.railway.internal',
+        'PORT': '5432',
+        
+    }
 }
-
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('Postgres.DATABASE_URL'),  # Ensure this environment variable is set in Railway
+        conn_max_age=1800
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -143,6 +146,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     'static/'
 ]
+
+#white noise satic stuff
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = 'media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -150,3 +158,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
