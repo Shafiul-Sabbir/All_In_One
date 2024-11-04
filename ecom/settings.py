@@ -13,14 +13,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# DATABASE_URL = "postgresql://postgres:vLCtWbKTAWPFolnfsIRZMzPOEiqhkuxC@autorack.proxy.rlwy.net:13506/railway"
-
 #Load our environmental variables
-load_dotenv()
+# load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,10 +27,10 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = [ 'https://allinone-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
 
 
 # Application definition
