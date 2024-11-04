@@ -87,6 +87,12 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # Explicitly define the engine
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': os.environ['DB_PASSWORD_YO'],
+        'HOST': 'postgres.railway.internal',
+        'PORT': '5432', 
+        
         **dj_database_url.config(
             default=os.environ.get('DATABASE_URL'),  # Use environment variable for database URL
             conn_max_age=1800
