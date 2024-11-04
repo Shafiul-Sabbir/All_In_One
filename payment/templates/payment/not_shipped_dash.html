@@ -21,41 +21,43 @@
                 <h3>Un - Shipped Items</h3>
                 <br/>
                 <!-- {{orders}} -->
-                <table class="table table-hover table-striped table-bordered ">
-                    <thead class="table-dark">
-                      <tr>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Customer Email</th>
-                        <!-- <th scope="col">Customer Address</th> -->
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Date Ordered</th>
-                        <th scope="col">Shipping Status</th>
-
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for item in orders %}
-                      <tr>
-                        <td><a href="{% url 'order_details' item.id %}">{{ item.id }}</a></td>
-                        <td>{{ item.full_name }}</td>
-                        <td>{{ item.email }}</td>
-                        <!-- <td>{{ item.shipping_address }}</td> -->
-                        <td>{{ item.amount_paid }}</td>
-                        <td>{{ item.date_ordered }}</td>
-                        <td>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="shipping_status" value="true">
-                                <input type="hidden" name="num" value={{ item.id }}>
-                                <button type="submit" class="btn btn-success btn-sm">Mark as Shipped</button>
-                            </form>
-                        </td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-bordered ">
+                        <thead class="table-dark">
+                          <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Customer Email</th>
+                            <!-- <th scope="col">Customer Address</th> -->
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Date Ordered</th>
+                            <th scope="col">Shipping Status</th>
+    
+                          </tr>
+                        </thead>
+    
+                        <tbody>
+                            {% for item in orders %}
+                          <tr>
+                            <td><a href="{% url 'order_details' item.id %}">{{ item.id }}</a></td>
+                            <td>{{ item.full_name }}</td>
+                            <td>{{ item.email }}</td>
+                            <!-- <td>{{ item.shipping_address }}</td> -->
+                            <td>{{ item.amount_paid }}</td>
+                            <td>{{ item.date_ordered }}</td>
+                            <td>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="shipping_status" value="true">
+                                    <input type="hidden" name="num" value={{ item.id }}>
+                                    <button type="submit" class="btn btn-success btn-sm">Mark as Shipped</button>
+                                </form>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
                 <br/><br/>
             </div>
         </center>
