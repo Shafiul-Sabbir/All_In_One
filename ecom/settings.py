@@ -100,7 +100,7 @@ DATABASES = {
 }
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('Postgres.DATABASE_URL'),  # Ensure this environment variable is set in Railway
+        default=os.environ.get('DATABASE_URL'),  # Ensure this environment variable is set in Railway
         conn_max_age=1800
     )
 }
