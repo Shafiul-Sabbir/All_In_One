@@ -13,12 +13,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #Load our environmental variables
-# load_dotenv()
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app']
+# ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
 
 
@@ -85,20 +85,20 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
         
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': os.environ['DB_PASSWORD_YO'],
-        'HOST': 'postgres.railway.internal',
-        'PORT': '5432',
+#         # 'ENGINE': 'django.db.backends.postgresql',
+#         # 'NAME': 'railway',
+#         # 'USER': 'postgres',
+#         # 'PASSWORD': os.environ['DB_PASSWORD_YO'],
+#         # 'HOST': 'postgres.railway.internal',
+#         # 'PORT': '5432',
         
-    }
-}
+#     }
+# }
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('Postgres.DATABASE_URL'),  # Ensure this environment variable is set in Railway
