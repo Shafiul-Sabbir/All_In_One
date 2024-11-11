@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
 # the domain as ALLOWED_HOSTS has found from "public networking" under "networking" under "settings" in the main app of railway, not in database section.

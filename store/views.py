@@ -38,7 +38,10 @@ def home(request):
     return render(request, 'home.html', {'products': products})
 
 def about(request):
-    return render(request, 'about.html', {})
+    # counting number of total products
+    count = Product.objects.count()
+    
+    return render(request, 'about.html', {'count' : count})
 
 def login_user(request):
     if request.method == 'POST':
