@@ -6,6 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from store.models import Product, Profile
 import datetime
+# Import Some Paypal Stuff
+from django.urls import reverse
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid # For generating unique user id for duplicate orders
 # Create your views here.
 
 def order_details(request, pk):
@@ -212,6 +217,9 @@ def process_order(request):
 def payment_success(request):
     return render(request, 'payment/payment.html', {})
 
+def  payment_failed(request):
+    return render(request, 'payment/payment_failed.html', {})
+
 def checkout(request):
     #Get the cart
     cart = Cart(request)
@@ -231,6 +239,7 @@ def checkout(request):
    
 def billing_info(request):
     if request.POST:
+        # Get the cart
         cart = Cart(request)
         cart_products = cart.get_prods()
         quantities = cart.get_quants()
@@ -240,17 +249,36 @@ def billing_info(request):
         my_shipping = request.POST
         request.session['my_shipping'] = my_shipping
         
+        # Get the Host 
+        host = request.get_host()
+        # Create Paypal Form Dictionary
+        paypal_dict = {
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
+            'amount': totals,
+            'item_name': 'Book Order',
+            'no_shipping' : '2',
+            'invoice': str(uuid.uuid4()),
+            'currency_code': 'USD',
+            'notify_url': 'http://{}{}'.format(host, reverse('payment-ipn')),
+            'return_url': 'http://{}{}'.format(host, reverse('payment_success')),
+            'cancel_return': 'http://{}{}'.format(host, reverse('payment_failed')),
+        }
+        
+        #Create the Paypal Form
+        paypal_form = PayPalPaymentsForm(initial=paypal_dict)
+
+        
         # check to see if user is logged in 
         if request.user.is_authenticated:
             # Get the Billing form
             billing_form = PaymentForm()
-            return render(request, 'payment/billing_info.html', {"cart_products": cart_products, "quantities": quantities, "totals": totals, "shipping_info": request.POST, "billing_form": billing_form}) 
+            return render(request, 'payment/billing_info.html', {"cart_products": cart_products, "quantities": quantities, "totals": totals, "shipping_info": request.POST, "billing_form": billing_form, "paypal_form": paypal_form}) 
 
         else:
             # not logged in 
             # Get the Billing form
             billing_form = PaymentForm()
-            return render(request, 'payment/billing_info.html', {"cart_products": cart_products, "quantities": quantities, "totals": totals, "shipping_info": request.POST, "billing_form": billing_form})
+            return render(request, 'payment/billing_info.html', {"cart_products": cart_products, "quantities": quantities, "totals": totals, "shipping_info": request.POST, "billing_form": billing_form, "paypal_form": paypal_form})
     
     else:
         messages.success(request, "You must be logged in to view that page !!!")
