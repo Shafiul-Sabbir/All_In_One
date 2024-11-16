@@ -220,6 +220,9 @@ def payment_success(request):
 def  payment_failed(request):
     return render(request, 'payment/payment_failed.html', {})
 
+def payment_ipn(rquest):
+    return render(rquest, 'payment/payment_ipn.html', {})
+
 def checkout(request):
     #Get the cart
     cart = Cart(request)
