@@ -76,11 +76,12 @@
             Payment with PayPal
         </div>
         <div class="card-body">
-            <form action="{% url 'process_order' %}" method="POST">
-                {% csrf_token %}
-                {{paypal_form.as_p}}
+            <center>
+                {{ paypal_form.render }}
+            </center>
         </div>
     </div>
+    <br/>
 
     <!-- Billing Info -->
     <div class="card ">
