@@ -215,7 +215,10 @@ def process_order(request):
         return redirect ('home')
 
 def payment_success(request):
-    return render(request, 'payment/payment_success.html', {})
+    paypal_data = {
+        'invoice': str(uuid.uuid4()),
+    }
+    return render(request, 'payment/payment_success.html', {'payment': paypal_data})
 
 def  payment_failed(request):
     return render(request, 'payment/payment_failed.html', {})
@@ -262,7 +265,7 @@ def billing_info(request):
             'no_shipping' : '2',
             'invoice': str(uuid.uuid4()),
             'currency_code': 'USD',
-            'notify_url': 'http://{}{}'.format(host, reverse('payment-ipn')),
+            'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
             'return_url': 'http://{}{}'.format(host, reverse('payment_success')),
             'cancel_return': 'http://{}{}'.format(host, reverse('payment_failed')),
         }
