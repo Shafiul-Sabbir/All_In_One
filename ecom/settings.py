@@ -12,9 +12,9 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app','127.0.0.1','localhost', '16a5-43-224-111-119.ngrok-free.app' ]
-CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app', 'https://16a5-43-224-111-119.ngrok-free.app']
+DEBUG = False
+ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
+CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
 # the domain as ALLOWED_HOSTS has found from "public networking" under "networking" under "settings" in the main app of railway, not in database section.
 # When we will work in local server we have to comment out it, and when we have to push the code in github, we have to uncomment it too.
 
