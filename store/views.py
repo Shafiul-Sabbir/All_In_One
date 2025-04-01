@@ -175,7 +175,11 @@ def search(request):
         return render(request, 'search.html', {'searched': searched, 'products': products})
         
 # superuser
+# username : sakib
+# password : 1234
+
+# username : akash
+# pass : kutub@100
+
 # username : sabbir
-# pass : sab1995
-# username : admin
-# pass : 123456
+# pass : 1234

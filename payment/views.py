@@ -103,7 +103,6 @@ def shipped_dash(request):
         messages.success("Access Denied")
         return redirect('home')
 
-
 def process_order(request):
     if request.POST:
         #Get the Cart

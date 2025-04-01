@@ -1,20 +1,23 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #Load our environmental variables
-load_dotenv()
+# load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
-CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
+ALLOWED_HOSTS = []
+
+# ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
+# CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
+
 # the domain as ALLOWED_HOSTS has found from "public networking" under "networking" under "settings" in the main app of railway, not in database section.
 # When we will work in local server we have to comment out it, and when we have to push the code in github, we have to uncomment it too.
 
@@ -67,13 +70,19 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Explicitly define the engine
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': os.environ['DB_PASSWORD_YO'],
-        'HOST': 'junction.proxy.rlwy.net',
-        'PORT': '35649', 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    
+    
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',  # Explicitly define the engine
+    #     'NAME': 'railway',
+    #     'USER': 'postgres',
+    #     'PASSWORD': os.environ['DB_PASSWORD_YO'],
+    #     'HOST': 'junction.proxy.rlwy.net',
+    #     'PORT': '35649', 
+    # }
 }
 # But NAME = PGDATABASE, USER = PGUSER and PASSWORD = PGPASSWORD which are defined in the "variables" section in railway database.
 # This HOST and PORT are collected from "public networking" under "Settings" on Railway postgress database. In there it is found as HOST:PORT -> :PGPORT. From there we will collect the HOST and PORT
