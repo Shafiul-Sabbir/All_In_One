@@ -133,8 +133,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 #white noise satic stuff
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# MEDIA_URL = '/media/'
-MEDIA_URL = 'https://res.cloudinary.com/djdtkuyiw/'
+MEDIA_URL = '/media/'
+# MEDIA_URL = 'https://res.cloudinary.com/djdtkuyiw/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -144,11 +144,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.environ['CLOUD_NAME'],
-#     'API_KEY': os.environ['API_KEY'],
-#     'API_SECRET': os.environ['API_SECRET'],
-# }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ['CLOUD_NAME'],
+    'API_KEY': os.environ['API_KEY'],
+    'API_SECRET': os.environ['API_SECRET'],
+}
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # add paypal settings
