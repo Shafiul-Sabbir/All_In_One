@@ -12,8 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
+# DEBUG = True
+DEBUG = False
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['all_in_one.onrender.com']
 
 # ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
 # CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
@@ -73,15 +75,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-    
-    
+
+
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',  # Explicitly define the engine
     #     'NAME': 'railway',
     #     'USER': 'postgres',
     #     'PASSWORD': os.environ['DB_PASSWORD_YO'],
     #     'HOST': 'junction.proxy.rlwy.net',
-    #     'PORT': '35649', 
+    #     'PORT': '35649',
     # }
 }
 # But NAME = PGDATABASE, USER = PGUSER and PASSWORD = PGPASSWORD which are defined in the "variables" section in railway database.
@@ -124,12 +126,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static/']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #white noise satic stuff
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = 'media/' 
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
