@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw
 # DEBUG = True
 DEBUG = False
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['all_in_one.onrender.com']
+ALLOWED_HOSTS = ['https://all-in-one-5j5c.onrender.com']
 
 # ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
 # CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
