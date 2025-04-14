@@ -8,6 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #Load our environmental variables
 load_dotenv()
 
+
+# Cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
