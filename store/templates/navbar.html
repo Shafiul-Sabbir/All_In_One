@@ -10,18 +10,18 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" 
-                    id="navbarDropdown" href="#" role="button" 
+                    <a class="nav-link dropdown-toggle"
+                    id="navbarDropdown" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{% url 'category' 'Mobile' %}">Mobile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Laptop' %}">Laptop</a></li> 
-                        <li><a class="dropdown-item" href="{% url 'category' 'Tab' %}">Tab</a></li> 
-                        <li><a class="dropdown-item" href="{% url 'category' 'Book' %}">Book</a></li> 
-                        <li><a class="dropdown-item" href="{% url 'category' 'Shirt' %}">Shirt</a></li> 
-                        <li><a class="dropdown-item" href="{% url 'category' 'Pen' %}">Pen</a></li> 
+                        <li><a class="dropdown-item" href="{% url 'category' 'Laptop' %}">Laptop</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Tab' %}">Tab</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Books' %}">Book</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Shirt' %}">Shirt</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Pen' %}">Pen</a></li>
                     </ul>
                 </li>
 
@@ -33,8 +33,8 @@
 
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" 
-                        id="navbarDropdown" href="#" role="button" 
+                        <a class="nav-link dropdown-toggle"
+                        id="navbarDropdown" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Profile ({{user.username}})</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'update_user' %}">User Profile</a></li>
@@ -44,8 +44,8 @@
                     </li>
                     {% if user.is_superuser %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" 
-                            id="navbarDropdown" href="#" role="button" 
+                            <a class="nav-link dropdown-toggle"
+                            id="navbarDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Orders</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{% url 'shipped_dash' %}">Shipped Orders</a></li>
@@ -54,7 +54,7 @@
                         </li>
                     {% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"> Logout</a></li>
-                    
+
 
                 {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>

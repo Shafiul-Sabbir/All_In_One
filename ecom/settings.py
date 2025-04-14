@@ -7,22 +7,17 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
-
 # Cloudinary imports
 import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['all-in-one-5j5c.onrender.com']
+DEBUG = True
+# DEBUG = False
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['all-in-one-5j5c.onrender.com']
 
 # ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
 # CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
