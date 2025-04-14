@@ -19,10 +19,10 @@ import cloudinary.api
 SECRET_KEY = 'django-insecure-df_c!2lc37o5dwg*$nj%3yl$7zsdt@c)q%=b5dmy3do+k44+tw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
-ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['all-in-one-5j5c.onrender.com']
+# DEBUG = True
+DEBUG = False
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['all-in-one-5j5c.onrender.com']
 
 # ALLOWED_HOSTS = ['allinone-production.up.railway.app', 'https://allinone-production.up.railway.app' ]
 # CSRF_TRUSTED_ORIGINS = ['https://allinone-production.up.railway.app']
@@ -141,7 +141,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-# MEDIA_URL = 'https://res.cloudinary.com/djdtkuyiw/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
